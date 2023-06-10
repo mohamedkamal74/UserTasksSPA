@@ -1,0 +1,176 @@
+<div class="container-xl">
+  <div class="table-responsive">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-sm-6">
+            <h4><b>New Task</b></h4>
+          </div>
+          <div class="col-sm-6">
+            <a href="#" routerLink="/Home" class="btn btn-success back"
+              ><i class="fas fa-arrow-circle-left"></i> Back</a
+            >
+          </div>
+        </div>
+      </div>
+      <form #taskForm="ngForm">
+        <div class="table-content">
+          <div class="form-group p-10 row">
+            <div class="col-sm-3">
+              <label for="name" class="p-t-b-10"
+                >Task Name<span class="requiredStar">*</span></label
+              >
+            </div>
+            <div class="col-sm-9">
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                required
+                maxlength="255"
+                [(ngModel)]="addTaskForm.name"
+                name="name"
+                #name="ngModel"
+              />
+              <div
+                *ngIf="name.errors && isSubmitted"
+                class="alert alert-danger validationError mt-2"
+              >
+                <div [hidden]="!name.errors?.['required']">
+                  Task Name is required
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-content">
+          <div class="form-group p-10 row">
+            <div class="col-sm-3">
+              <label for="status" class="p-t-b-10"
+                >Task Status<span class="requiredStar">*</span></label
+              >
+            </div>
+            <div class="col-sm-9">
+              <input
+                type="text"
+                class="form-control"
+                id="status"
+                required
+                maxlength="255"
+                [(ngModel)]="addTaskForm.status"
+                name="status"
+                #status="ngModel"
+              />
+              <div
+                *ngIf="status.errors && isSubmitted"
+                class="alert alert-danger validationError mt-2"
+              >
+                <div [hidden]="!status.errors?.['required']">
+                  Task Status is required
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-content">
+          <div class="form-group p-10 row">
+            <div class="col-sm-3">
+              <label for="date" class="p-t-b-10"
+                >Due Date<span class="requiredStar">*</span></label
+              >
+            </div>
+            <div class="col-sm-9">
+              <input
+                type="date"
+                class="form-control"
+                id="date"
+                required
+                [(ngModel)]="addTaskForm.date"
+                name="date"
+                #date="ngModel"
+              />
+              <div
+                *ngIf="date.errors && isSubmitted"
+                class="alert alert-danger validationError mt-2"
+              >
+                <div [hidden]="!date.errors?.['required']">
+                  Task Due Date is required
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-content">
+          <div class="form-group p-10 row">
+            <div class="col-sm-3">
+              <label for="description" class="p-t-b-10"
+                >Description<span class="requiredStar">*</span></label
+              >
+            </div>
+            <div class="col-sm-9">
+              <input
+                type="text"
+                class="form-control"
+                id="description"
+                required
+                [(ngModel)]="addTaskForm.description"
+                name="description"
+                #description="ngModel"
+              />
+              <div
+                *ngIf="description.errors && isSubmitted"
+                class="alert alert-danger validationError mt-2"
+              >
+                <div [hidden]="!description.errors?.['required']">
+                  Task Description is required
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-content">
+          <div class="form-group p-10 row">
+            <div class="col-sm-3">
+              <label for="periority" class="p-t-b-10"
+                >Periority Level<span class="requiredStar">*</span></label
+              >
+            </div>
+            <div class="col-sm-9">
+              <ng-select
+                [items]="periorities"
+                placeholder="Select Periority"
+                [(ngModel)]="addTaskForm.periority"
+                bindValue="id"
+                bindLabel="name"
+                [ngModelOptions]="{standalone: true}"
+              >
+              </ng-select>
+            <!-- <ng-select [(ngModel)]="selectedPeriorityId"  [ngModelOptions]="{standalone: true}">
+                <option  *ngFor="let periorty of periorities" [value]="periorty.id">
+                    {{periorty.name}}
+                </option >
+            </ng-select> -->
+              <!-- <div
+                *ngIf="periority.errors && isSubmitted"
+                class="alert alert-danger validationError mt-2"
+              >
+                <div [hidden]="!periority.errors?.['required']">
+                  Task Description is required
+                </div> -->
+              </div>
+            </div>
+          </div>
+
+        <div class="table-footer">
+          <button class="btn btn-success" (click)="AddTask(taskForm.valid)">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
